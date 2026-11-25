@@ -1,5 +1,12 @@
 from data_preprocessing import load_data, clean_and_split, remove_constant_features
 from risk_analyzer import analyze_url_full
+from ml_model import (
+    prepare_dataset,
+    train_random_forest,
+    evaluate_model,
+    get_top_features,
+    save_model
+)
 
 def run_preprocessing_pipeline():
     print("\n--- Running Dataset Preprocessing Pipeline ---")
@@ -35,21 +42,43 @@ def run_live_url_scanner():
         print("Detected Threats: None")
     print("=" * 50)
 
+def run_ml_training_pipeline():
+    print("\n--- Training & Evaluating Phishing Detection AI Model ---")
+    X_train, X_test, y_train, y_test = prepare_dataset()
+    model = train_random_forest(X_train, y_train)
+    results = evaluate_model(model, X_test, y_test)
+    saved_path = save_model(model)
+
+    print(f"Accuracy  : {results['accuracy'] * 100:.2f}%")
+    print(f"Precision : {results['precision'] * 100:.2f}%")
+    print(f"Recall    : {results['recall'] * 100:.2f}%")
+    print(f"F1-Score  : {results['f1_score'] * 100:.2f}%")
+
+    print("\nTop 5 Most Important Features:")
+    top_features = get_top_features(model, X_train.columns, top_n=5)
+    for rank, (name, score) in enumerate(top_features.items(), start=1):
+        print(f"  {rank}. {name}: {score * 100:.2f}%")
+
+    print(f"\nModel saved to: {saved_path}")
+
 if __name__ == "__main__":
     while True:
         print("\n=== CyberSecurity Analyzer Menu ===")
         print("1. Run Dataset Preprocessing Pipeline")
         print("2. Scan a Live URL (SSL + URL Features + Risk Score)")
-        print("3. Exit")
+        print("3. Train, Evaluate & Save ML Model (Random Forest)")
+        print("4. Exit")
 
-        choice = input("Select an option (1/2/3): ").strip()
+        choice = input("Select an option (1/2/3/4): ").strip()
 
         if choice == "1":
             run_preprocessing_pipeline()
         elif choice == "2":
             run_live_url_scanner()
         elif choice == "3":
+            run_ml_training_pipeline()
+        elif choice == "4":
             print("Exiting CyberSecurity Analyzer. Stay safe!")
             break
         else:
-            print("Invalid choice. Please enter 1, 2, or 3.")
+            print("Invalid choice. Please enter 1, 2, 3, or 4.")
