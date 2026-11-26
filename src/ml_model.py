@@ -41,6 +41,10 @@ def save_model(model, filepath='models/phishing_rf_model.joblib'):
     os.makedirs(os.path.dirname(filepath), exist_ok=True)
     joblib.dump(model, filepath, compress=3)
     return filepath
+OPTIMAL_THRESHOLD = 0.40
+def predict_with_threshold(model, X_data, threshold=OPTIMAL_THRESHOLD):
+    probs = model.predict_proba(X_data)[:, 1]
+    return (probs >= threshold).astype(int)
 
 if __name__ == "__main__":
     print("1. Loading and cleaning dataset...")
