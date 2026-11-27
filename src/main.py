@@ -8,6 +8,8 @@ from ml_model import (
     save_model
 )
 
+from report_generator import scan_urls_from_file, save_json_report, save_csv_report
+
 def run_preprocessing_pipeline():
     print("\n--- Running Dataset Preprocessing Pipeline ---")
     train_df, test_df = load_data('data/Training.parquet', 'data/Testing.parquet')
@@ -61,16 +63,36 @@ def run_ml_training_pipeline():
 
     print(f"\nModel saved to: {saved_path}")
 
+
+def run_batch_scanner():
+    filepath = input("\nEnter path to URLs file (default: urls.txt): ").strip()
+    if not filepath:
+        filepath = "urls.txt"
+
+    try:
+        results = scan_urls_from_file(filepath)
+        if not results:
+            print("The file is empty. No URLs to scan.")
+            return
+
+        json_path = save_json_report(results)
+        csv_path = save_csv_report(results)
+        print(f"\nBatch scan completed! Scanned {len(results)} URLs.")
+        print(f"JSON Report saved to: {json_path}")
+        print(f"CSV Report saved to : {csv_path}")
+    except FileNotFoundError:
+        print(f"Error: File '{filepath}' not found. Please check the file name.")
+
 if __name__ == "__main__":
     while True:
         print("\n=== CyberSecurity Analyzer Menu ===")
         print("1. Run Dataset Preprocessing Pipeline")
         print("2. Scan a Live URL (SSL + URL Features + Risk Score)")
         print("3. Train, Evaluate & Save ML Model (Random Forest)")
-        print("4. Exit")
+        print("4. Batch Scan URLs from File (Export JSON & CSV)")
+        print("5. Exit")
 
-        choice = input("Select an option (1/2/3/4): ").strip()
-
+        choice = input("Select an option (1/2/3/4/5): ").strip()
         if choice == "1":
             run_preprocessing_pipeline()
         elif choice == "2":
@@ -78,7 +100,9 @@ if __name__ == "__main__":
         elif choice == "3":
             run_ml_training_pipeline()
         elif choice == "4":
+            run_batch_scanner()
+        elif choice == "5":
             print("Exiting CyberSecurity Analyzer. Stay safe!")
             break
         else:
-            print("Invalid choice. Please enter 1, 2, 3, or 4.")
+            print("Invalid choice. Please enter 1, 2, 3, 4, or 5.")

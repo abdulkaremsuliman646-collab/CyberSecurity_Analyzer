@@ -1,0 +1,4 @@
+https://www.google.com
+https://github.com
+http://192.168.1.50/login-verify-account
+http://secure-bank-update-verify.xyz/confirm

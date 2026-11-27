@@ -1,0 +1,5 @@
+URL,Hostname,SSL Valid,Risk Score,Verdict,Threats
+https://www.google.com,www.google.com,True,0,SAFE,None
+https://github.com,github.com,True,0,SAFE,None
+http://192.168.1.50/login-verify-account,192.168.1.50,False,100,HIGH RISK (PHISHING),"Invalid or missing SSL certificate; Does not use HTTPS; Uses raw IP address instead of domain name; High ratio of digits in URL; Multiple suspicious keywords: login, verify, account"
+http://secure-bank-update-verify.xyz/confirm,secure-bank-update-verify.xyz,False,70,HIGH RISK (PHISHING),"Invalid or missing SSL certificate; Does not use HTTPS; Multiple suspicious keywords: verify, update, bank, secure, confirm"

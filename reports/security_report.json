@@ -1,0 +1,150 @@
+[
+    {
+        "url": "https://www.google.com",
+        "url_features": {
+            "url": "https://www.google.com",
+            "hostname": "www.google.com",
+            "url_length": 22,
+            "digit_count": 0,
+            "digit_ratio": 0.0,
+            "dot_count": 2,
+            "hyphen_count": 0,
+            "has_at_symbol": false,
+            "uses_https": true,
+            "has_ip": false,
+            "subdomain_count": 1,
+            "suspicious_keywords": [],
+            "suspicious_keywords_count": 0
+        },
+        "ssl_report": {
+            "url": "https://www.google.com",
+            "hostname": "www.google.com",
+            "valid_ssl": true,
+            "issuer": "Google Trust Services",
+            "expiry_date": "2027-01-26",
+            "days_left": 59,
+            "error": null
+        },
+        "risk_assessment": {
+            "score": 0,
+            "risk_level": "SAFE",
+            "reasons": []
+        }
+    },
+    {
+        "url": "https://github.com",
+        "url_features": {
+            "url": "https://github.com",
+            "hostname": "github.com",
+            "url_length": 18,
+            "digit_count": 0,
+            "digit_ratio": 0.0,
+            "dot_count": 1,
+            "hyphen_count": 0,
+            "has_at_symbol": false,
+            "uses_https": true,
+            "has_ip": false,
+            "subdomain_count": 0,
+            "suspicious_keywords": [],
+            "suspicious_keywords_count": 0
+        },
+        "ssl_report": {
+            "url": "https://github.com",
+            "hostname": "github.com",
+            "valid_ssl": true,
+            "issuer": "Sectigo Limited",
+            "expiry_date": "2027-01-27",
+            "days_left": 61,
+            "error": null
+        },
+        "risk_assessment": {
+            "score": 0,
+            "risk_level": "SAFE",
+            "reasons": []
+        }
+    },
+    {
+        "url": "http://192.168.1.50/login-verify-account",
+        "url_features": {
+            "url": "http://192.168.1.50/login-verify-account",
+            "hostname": "192.168.1.50",
+            "url_length": 40,
+            "digit_count": 9,
+            "digit_ratio": 0.225,
+            "dot_count": 3,
+            "hyphen_count": 2,
+            "has_at_symbol": false,
+            "uses_https": false,
+            "has_ip": true,
+            "subdomain_count": 0,
+            "suspicious_keywords": [
+                "login",
+                "verify",
+                "account"
+            ],
+            "suspicious_keywords_count": 3
+        },
+        "ssl_report": {
+            "url": "http://192.168.1.50/login-verify-account",
+            "hostname": "192.168.1.50",
+            "valid_ssl": false,
+            "issuer": null,
+            "expiry_date": null,
+            "days_left": null,
+            "error": "timed out"
+        },
+        "risk_assessment": {
+            "score": 100,
+            "risk_level": "HIGH RISK (PHISHING)",
+            "reasons": [
+                "Invalid or missing SSL certificate",
+                "Does not use HTTPS",
+                "Uses raw IP address instead of domain name",
+                "High ratio of digits in URL",
+                "Multiple suspicious keywords: login, verify, account"
+            ]
+        }
+    },
+    {
+        "url": "http://secure-bank-update-verify.xyz/confirm",
+        "url_features": {
+            "url": "http://secure-bank-update-verify.xyz/confirm",
+            "hostname": "secure-bank-update-verify.xyz",
+            "url_length": 44,
+            "digit_count": 0,
+            "digit_ratio": 0.0,
+            "dot_count": 1,
+            "hyphen_count": 3,
+            "has_at_symbol": false,
+            "uses_https": false,
+            "has_ip": false,
+            "subdomain_count": 0,
+            "suspicious_keywords": [
+                "verify",
+                "update",
+                "bank",
+                "secure",
+                "confirm"
+            ],
+            "suspicious_keywords_count": 5
+        },
+        "ssl_report": {
+            "url": "http://secure-bank-update-verify.xyz/confirm",
+            "hostname": "secure-bank-update-verify.xyz",
+            "valid_ssl": false,
+            "issuer": null,
+            "expiry_date": null,
+            "days_left": null,
+            "error": "[Errno 11001] getaddrinfo failed"
+        },
+        "risk_assessment": {
+            "score": 70,
+            "risk_level": "HIGH RISK (PHISHING)",
+            "reasons": [
+                "Invalid or missing SSL certificate",
+                "Does not use HTTPS",
+                "Multiple suspicious keywords: verify, update, bank, secure, confirm"
+            ]
+        }
+    }
+]
